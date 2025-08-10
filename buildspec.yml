@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "No dependencies for static site"
+  build:
+    commands:
+      - echo "Building static site..."
+  post_build:
+    commands:
+      - echo "Deploying to S3..."
+      - aws s3 sync . s3://epicreads-static-website-bucket --delete
+
+artifacts:
+  files:
+    - '**/*'
